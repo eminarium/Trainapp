@@ -1,0 +1,7 @@
+%span.col-md-2 
+  %strong= category.name
+%span.col= category.description
+%span.col-auto
+  = link_to 'Show', category, class: "btn btn-info"
+  = link_to 'Edit', edit_category_path(category), class: "btn btn-warning"
+  = link_to 'Destroy', category, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger"

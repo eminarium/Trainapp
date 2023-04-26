@@ -1,23 +1,14 @@
-%h1 Listing categories
+.row.mt-5
+  .col
+    %h1.display-3 Categories
+  .col-auto.align-self-center= link_to 'New Category', new_category_path, class: "btn btn-primary"
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th
-      %th
-      %th
-
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.name
-        %td= category.description
-        %td= link_to 'Show', category, class: "btn btn-info"
-        %td= link_to 'Edit', edit_category_path(category), class: "btn btn-warning"
-        %td= link_to 'Destroy', category, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger"
+%ul.list-group.mt-3
+  - @categories.each do |category|
+    %li.list-group-item
+      .row
+        = render category
 
 %br
 
-= link_to 'New Category', new_category_path, class: "btn btn-primary"
+
