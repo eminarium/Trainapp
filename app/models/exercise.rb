@@ -1,7 +1,7 @@
 class Exercise < ApplicationRecord
 
   # VALIDATIONS
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 3 }
   validates :category_id, presence: true
 
   # ASSOCIATIONS

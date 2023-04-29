@@ -3,7 +3,7 @@
     %h1.display-3 Exercises
   .col-auto.align-self-center= link_to "New Exercise", new_exercise_path, class: "btn btn-primary"
   
-%ul.list-group
+%ul.list-group.mt-3
   - @exercises.each do |exercise|
     %li.list-group-item
       .row
