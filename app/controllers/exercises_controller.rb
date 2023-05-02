@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
 
   before_action :set_exercise, only: %i[show edit update destroy]
+  before_action :set_categories_collection, only: %i[new edit create update]
 
   def index
     @exercises = Exercise.includes(:category)
@@ -11,11 +12,9 @@ class ExercisesController < ApplicationController
 
   def new
     @exercise = Exercise.new
-    @categories = Category.all
   end
 
   def edit
-    @categories = Category.all
   end
 
   def create
@@ -52,6 +51,10 @@ class ExercisesController < ApplicationController
 
   def set_exercise
     @exercise = Exercise.find(params[:id])
+  end
+
+  def set_categories_collection
+    @categories = Category.all
   end
 
   def exercise_params

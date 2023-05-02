@@ -1,0 +1,10 @@
+%p#notice= notice
+
+.card.w-75.mb-3.mt-5
+  .card-body
+    %h5.card-title= @workout.name
+    %span Difficulty level: 
+    %span.mb-2.badge.bg-info= @workout.level
+    %p.card-text= @workout.description
+    = link_to "Back to List", workouts_path, class: "btn btn-primary"
+    = link_to "Edit", edit_workout_path(@workout), class: "btn btn-warning"

@@ -1,0 +1,10 @@
+.row.mt-5
+  .col
+    %h1.display-3 Workouts
+  .col-auto.align-self-center= link_to "New Workout", new_workout_path, class: "btn btn-primary"
+
+%ul.list-group.mt-3
+  - @workouts.each do |workout|
+    %li.list-group-item
+      .row
+        = render workout
