@@ -13,9 +13,9 @@ FactoryBot.define do
   end
 
   factory :exercise do
-    name { "MyString" }
-    category { nil }
-    description { "MyString" }
+    name { Faker::Lorem.words }
+    category { create(:category) }
+    description { Faker::Lorem.sentence }
   end
 
   factory(:category) do
