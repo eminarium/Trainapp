@@ -6,10 +6,10 @@ FactoryBot.define do
   end
 
   factory :workout do
-    name { "MyString" }
-    category { nil }
-    level { 1 }
-    description { "MyText" }
+    name { Faker::Lorem.words }
+    category { create(:category) }
+    level { Workout.levels.keys.sample }
+    description { Faker::Lorem.sentence }
   end
 
   factory :exercise do

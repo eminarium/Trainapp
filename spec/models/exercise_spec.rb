@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Exercise, type: :model do
   
+  let(:category) { create(:category) }
+
   it "creates an exercise with valid params" do
-    category = Category.create(name: "Test category") 
     exercise = Exercise.create(name: "An exercise", category: category)
 
     expect(exercise).to be_valid
   end
 
   it "fails to create an exercise without a name provided" do
-    category = Category.create(name: "Test category") 
     exercise = Exercise.create(name: nil, category: category)
 
     expect(exercise).not_to be_valid
@@ -19,7 +19,6 @@ RSpec.describe Exercise, type: :model do
   end
 
   it "fails to create an exercise with a name less than 3 characters" do
-    category = Category.create(name: "Test category") 
     exercise = Exercise.create(name: "ab", category: category)
 
     expect(exercise).not_to be_valid
