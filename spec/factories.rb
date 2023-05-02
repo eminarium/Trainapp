@@ -19,7 +19,7 @@ FactoryBot.define do
   end
 
   factory(:category) do
-    name { Faker::Lorem.words }
+    name { Faker::Lorem.word }
     description { Faker::Lorem.sentence }
   end
 end
