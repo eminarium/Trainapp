@@ -1,11 +1,13 @@
 %span.col-6.col-md-2
-  %strong= exercise.name
+  = link_to exercise, style: "text-decoration:none; color: black" do
+    %strong= exercise.name
 %span.col-6.col-md-2.align-item-right.mb-3
   = link_to exercise.category do
     %span.badge.bg-secondary= exercise.category.name
 
 %span.col.mb-3= exercise.description
 %span.col-md-auto.mb-2
-  = link_to "Show", exercise, class: "btn btn-info"
-  = link_to "Edit", edit_exercise_path(exercise), class: "btn btn-warning"
-  = link_to "Delete", exercise, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
+  - if user_signed_in?
+    = link_to "Show", exercise, class: "btn btn-info"
+    = link_to "Edit", edit_exercise_path(exercise), class: "btn btn-warning"
+    = link_to "Delete", exercise, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"

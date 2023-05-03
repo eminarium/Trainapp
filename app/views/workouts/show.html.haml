@@ -7,4 +7,4 @@
     %span.mb-2.badge.bg-info= @workout.level
     %p.card-text= @workout.description
     = link_to "Back to List", workouts_path, class: "btn btn-primary"
-    = link_to "Edit", edit_workout_path(@workout), class: "btn btn-warning"
+    = link_to "Edit", edit_workout_path(@workout), class: "btn btn-warning" if user_signed_in?

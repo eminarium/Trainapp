@@ -1,5 +1,6 @@
 %span.col-6.col-md-2
-  %strong= workout.name
+  = link_to workout, style: "text-decoration: none; color: black" do
+    %strong= workout.name
 %span.col-4.col-md-2.align-item-right.mb-3
   = link_to workout.category do
     %span.badge.bg-secondary= workout.category.name
@@ -8,6 +9,7 @@
 
 %span.col-md.col-xs-12.mb-3= workout.description
 %span.col-auto.mb-2
-  = link_to "Show", workout, class: "btn btn-info"
-  = link_to "Edit", edit_workout_path(workout), class: "btn btn-warning"
-  = link_to "Delete", workout, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
+  - if user_signed_in?
+    = link_to "Show", workout, class: "btn btn-info"
+    = link_to "Edit", edit_workout_path(workout), class: "btn btn-warning"
+    = link_to "Delete", workout, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"

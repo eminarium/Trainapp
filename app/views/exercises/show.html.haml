@@ -5,4 +5,4 @@
     %h5.card-title= @exercise.name
     %p.card-text= @exercise.description
     = link_to "Back to List", exercises_path, class: "btn btn-primary"
-    = link_to "Edit", edit_exercise_path(@exercise), class: "btn btn-warning"
+    = link_to "Edit", edit_exercise_path(@exercise), class: "btn btn-warning" if user_signed_in?

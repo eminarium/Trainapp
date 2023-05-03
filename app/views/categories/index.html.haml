@@ -1,7 +1,8 @@
 .row.mt-5
   .col
     %h1.display-3 Categories
-  .col-auto.align-self-center= link_to 'New Category', new_category_path, class: "btn btn-primary"
+  - if user_signed_in?
+    .col-auto.align-self-center= link_to 'New Category', new_category_path, class: "btn btn-primary"
 
 %ul.list-group.mt-3
   - @categories.each do |category|
