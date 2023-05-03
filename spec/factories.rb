@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :user do
+    
+  end
+
   factory :workout_exercise do
     workout { create(:workout) }
     exercise { create(:exercise, workout: workout) }

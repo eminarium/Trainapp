@@ -2,6 +2,7 @@ class WorkoutsController < ApplicationController
 
   before_action :set_workout, only: %i[show edit update destroy]
   before_action :set_categories_collection, only: %i[new edit create update]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @workouts = Workout.all
