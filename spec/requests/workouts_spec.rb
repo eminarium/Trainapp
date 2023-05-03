@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Workouts", type: :request do
 
   let (:valid_category) { create(:category) }
+  let(:user) { create(:user) }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -23,6 +24,8 @@ RSpec.describe "Workouts", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
+      sign_in user
+
       get new_workout_url
       expect(response).to have_http_status(:success)
     end
@@ -30,6 +33,7 @@ RSpec.describe "Workouts", type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
+      sign_in user
       workout = create(:workout)
 
       get edit_workout_url(workout)
@@ -40,12 +44,16 @@ RSpec.describe "Workouts", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new workout" do
+        sign_in user
+
         expect {
           post workouts_url, params: { workout: attributes_for(:workout, category_id: valid_category.id) }
         }.to change(Workout, :count).by(1)
       end
 
       it "redirects to the created workout" do
+        sign_in user
+
         post workouts_url, params: { workout: attributes_for(:workout, category_id: valid_category.id) }
         expect(response).to redirect_to(workout_url(Workout.last))
       end
@@ -53,12 +61,16 @@ RSpec.describe "Workouts", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new workout" do
+        sign_in user
+
         expect {
           post workouts_url, params: { workout: attributes_for(:workout, category_id: valid_category.id, name: "") }
         }.to change(Workout, :count).by(0)
       end
 
       it "does not render a successful response" do
+        sign_in user
+        
         post workouts_url, params: { workout: attributes_for(:workout, category_id: valid_category.id, name: "") }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -68,6 +80,7 @@ RSpec.describe "Workouts", type: :request do
   describe "PATCh /update" do
     context "with valid parameters" do
       it "updates the requested workout" do
+        sign_in user
         workout = create(:workout)
 
         patch workout_url(workout), params: { workout: attributes_for(:workout, name: "Updated workout") }
@@ -76,6 +89,7 @@ RSpec.describe "Workouts", type: :request do
       end
 
       it "redirects to the updated workout" do
+        sign_in user
         workout = create(:workout)
 
         patch workout_url(workout), params: { workout: attributes_for(:workout, name: "Updated workout") }
@@ -85,6 +99,7 @@ RSpec.describe "Workouts", type: :request do
 
     context "with invalid parameters" do
       it "does not have a successful response" do
+        sign_in user
         workout = create(:workout)
 
         patch workout_url(workout), params: { workout: attributes_for(:workout, name: "") }
@@ -95,6 +110,7 @@ RSpec.describe "Workouts", type: :request do
 
   describe "DELETE /destroy" do
     it "successfully deletes the workout" do
+      sign_in user
       workout = create(:workout)
 
       expect {
@@ -103,6 +119,7 @@ RSpec.describe "Workouts", type: :request do
     end
 
     it "redirects to the workouts page" do
+      sign_in user
       workout = create(:workout)
 
       delete workout_url(workout)
