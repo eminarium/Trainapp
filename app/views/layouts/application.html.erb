@@ -8,9 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script>window.process = { env: {} }</script>
   </head>
 
   <body>
+    <%= render "layouts/navbar" %>
+
     <div class="container">
       <%= yield %>
     </div>
