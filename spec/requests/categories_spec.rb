@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
 
-  let(:valid_category) { create(:category) }
-
   describe "GET /index" do
     it "renders a successful response" do
-      get exercises_url
+      get categories_url
       expect(response).to have_http_status(:success)
     end
   end
@@ -56,7 +54,7 @@ RSpec.describe "Categories", type: :request do
         }.to change(Category, :count).by(0)
       end
 
-      it "renders does not have a successful status" do
+      it "does not have a successful status" do
         post categories_url, params: { category: attributes_for(:category, name: nil) }
         expect(response).to have_http_status(:unprocessable_entity)
       end
